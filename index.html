@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospitality Business Transformation Journey</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .logo svg {
+            width: 35px;
+            height: 35px;
+            fill: #2196F3;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 1.2em;
+        }
+
+        .flowchart {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .phase {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .phase-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .phase-1 .phase-number { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); }
+        .phase-2 .phase-number { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .phase-3 .phase-number { background: linear-gradient(135deg, #45b7d1, #3498db); }
+        .phase-4 .phase-number { background: linear-gradient(135deg, #96ceb4, #85c1a8); }
+        .phase-5 .phase-number { background: linear-gradient(135deg, #feca57, #ff9ff3); }
+
+        .phase-content {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+        }
+
+        .phase-1 .phase-content { border-left-color: #ff6b6b; }
+        .phase-2 .phase-content { border-left-color: #4ecdc4; }
+        .phase-3 .phase-content { border-left-color: #45b7d1; }
+        .phase-4 .phase-content { border-left-color: #96ceb4; }
+        .phase-5 .phase-content { border-left-color: #feca57; }
+
+        .phase-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phase-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .item-icon {
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+
+        .item-text {
+            flex: 1;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metric-growth {
+            font-size: 1.1em;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 15px;
+        }
+
+        .arrow {
+             text-align: center;
+             font-size: 3em; /* increased size */
+             color: #000000; /* dark black */
+             margin: 10px 0;
+             font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .phase {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .phase-number {
+                align-self: center;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .phase-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="Picture1.png" alt="Divdarshan Logo" style="width: 50px; height: 50px;" />
+      
+            </div>
+            <h1>Divdarshan Business Transformation</h1>
+            <p>Data-Driven Growth Journey: 2019-2024</p>
+        </div>
+
+        <div class="flowchart">
+            <div class="phase phase-1">
+                <div class="phase-number">1</div>
+                <div class="phase-content">
+                    <div class="phase-title">🔴 Initial Challenges</div>
+                    <div class="phase-items">
+                        <div class="item">
+                            <div class="item-icon">❌</div>
+                            <div class="item-text">No centralized tracker for bookings, guests, or revenue by property</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">⚠️</div>
+                            <div class="item-text">Uneven income across properties with no pricing logic</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">📉</div>
+                            <div class="item-text">Limited online presence and weak digital bookings</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🔄</div>
+                            <div class="item-text">Manual processes, no seasonal or demand-based adjustments</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="phase phase-2">
+                <div class="phase-number">2</div>
+                <div class="phase-content">
+                    <div class="phase-title">🔍 Data Analytics Intervention</div>
+                    <div class="phase-items">
+                        <div class="item">
+                            <div class="item-icon">📊</div>
+                            <div class="item-text">Consolidated historical data into structured Google Sheets dashboards</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🧮</div>
+                            <div class="item-text">Analyzed key metrics: revenue, bookings, guests, cost components</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">💡</div>
+                            <div class="item-text">Developed optimized pricing strategy based on channel performance, seasonality, and market conditions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="phase phase-3">
+                <div class="phase-number">3</div>
+                <div class="phase-content">
+                    <div class="phase-title">🛠️ Actions Taken</div>
+                    <div class="phase-items">
+                        <div class="item">
+                            <div class="item-icon">🏷️</div>
+                            <div class="item-text">Introduced dynamic pricing based on demand, platform & season</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🌐</div>
+                            <div class="item-text">Listed properties on high-traffic OTAs (Airbnb, MMT)</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🧾</div>
+                            <div class="item-text">Maintained channel-specific databases to tailor promotions</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">📞</div>
+                            <div class="item-text">Prioritized good customer communication & support for better guest retention</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🔁</div>
+                            <div class="item-text">Focused on repeated bookings using feedback & stay experience insights</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="phase phase-4">
+                <div class="phase-number">4</div>
+                <div class="phase-content">
+                    <div class="phase-title">✅ Results Achieved (2019 vs 2024)</div>
+                    <div class="results-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Revenue</div>
+                            <div class="metric-value">₹2.9M</div>
+                            <div class="metric-growth">🔼 10× Growth</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Bookings</div>
+                            <div class="metric-value">353</div>
+                            <div class="metric-growth">🔼 +233%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Guests</div>
+                            <div class="metric-value">1,048</div>
+                            <div class="metric-growth">🔼 +250%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Airbnb Revenue</div>
+                            <div class="metric-value">₹1.33M</div>
+                            <div class="metric-growth">🔼 6.5× Growth</div>
+                        </div>
+                    </div>
+                    <div class="item" style="margin-top: 20px; background: #e8f5e8;">
+                        <div class="item-icon">💡</div>
+                        <div class="item-text"><strong>Cost scaling remained efficient</strong> – operational expenses increased in proportion to growth, avoiding overheads.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="phase phase-5">
+                <div class="phase-number">5</div>
+                <div class="phase-content">
+                    <div class="phase-title">🔮 Future Goals</div>
+                    <div class="phase-items">
+                        <div class="item">
+                            <div class="item-icon">📈</div>
+                            <div class="item-text">Add forecasting model to project revenue till 2027</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🗓️</div>
+                            <div class="item-text">Integrate local events, festivals & demand shifts into pricing logic</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🏷️</div>
+                            <div class="item-text">Position Divdarshan as a trusted, data-driven rental brand</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-icon">🤖</div>
+                            <div class="item-text">Automate analytics for real-time insights and actions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
